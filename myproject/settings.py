@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     # for token authenticaion
     'rest_framework',
     'rest_framework.authtoken',
+
+    # For filter data
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -147,5 +150,10 @@ REST_FRAMEWORK = {
     # Search Functionality Setting
     'DEFAULT_FILTER_BACKENDS' : [
         'rest_framework.filters.SearchFilter',
-    ]
+    ],
+
+    # Filter Functionality add in settings
+    'DEFAULT_FILTER_BACKENDS' : [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
 }

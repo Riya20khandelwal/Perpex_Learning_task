@@ -56,6 +56,9 @@ from rest_framework.permissions import IsAuthenticated
 
 from .permissions import IsOwner
 
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import TaskFilter
+
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
@@ -64,6 +67,12 @@ class TaskViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'description']
 
+    # Filter Data
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['completed']
+    filterset_class = TaskFilter
+
+    #permissions functionality
     permission_classes = [IsAuthenticated, IsOwner]
 
     def perform_create(self, serializer):
