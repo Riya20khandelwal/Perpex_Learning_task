@@ -143,4 +143,9 @@ REST_FRAMEWORK = {
 
     # Custom Pagination Setting
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination',
+
+    # Search Functionality Setting
+    'DEFAULT_FILTER_BACKENDS' : [
+        'rest_framework.filters.SearchFilter',
+    ]
 }

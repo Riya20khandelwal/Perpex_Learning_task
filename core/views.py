@@ -48,7 +48,7 @@
 #         task.delete()
 #         return Response({"message": "Deleted successfully"}, status=204)
 
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import Task
 from .serializers import TaskSerializer
 
@@ -59,6 +59,11 @@ from .permissions import IsOwner
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+    # Searching functionality 
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'description']
+
     permission_classes = [IsAuthenticated, IsOwner]
 
     def perform_create(self, serializer):
