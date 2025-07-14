@@ -9,7 +9,15 @@
 from rest_framework.routers import DefaultRouter
 from .views import TaskViewSet
 
+from rest_framework.authtoken.views import obtain_auth_token
+from django.urls import path, include
+
 router = DefaultRouter()
 router.register('tasks', TaskViewSet, basename='task')
 
 urlpatterns = router.urls
+
+urlpatterns = [
+    path('login/', obtain_auth_token),
+    path('', include(router.urls)),
+]
